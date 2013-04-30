@@ -1,0 +1,12 @@
+<h1>Mailers</h1>
+
+<% @mailers.each do |mailer| %>
+  <p><%= mailer.to_s %></p>
+
+  <ul>
+  <% mailer.mailer_actions.each do |action| %>
+    <li><%= link_to action, mailer_path(mailer.to_s, action) %></li>
+  <% end %>
+  </ul>
+
+<% end %>

@@ -1,7 +1,7 @@
 LetterBomb
 ==========
 
-Emails are pretty dangerous. Inspect your ActionMailer templates in your browser.
+Emails are pretty dangerous - inspect your mailer templates from the safety of your browser.
 
 Install
 -------
@@ -9,7 +9,7 @@ Install
 Add to your `Gemfile`:
 
 ```ruby
-gem 'letter_bomb'
+gem 'letter_bomb', group: :development
 ```
 
 and `bundle` away.
@@ -17,10 +17,33 @@ and `bundle` away.
 Usage
 -----
 
-```
-class UserMailer::Preview < MailPreview
+Mount the engine in your `routes.rb`:
 
-  factory_girl 'spec/factories'
+```ruby
+mount LetterBomb::Engine, at: '/letter_bomb'
+```
+
+and hit `/letter_bomb` for a list of previews.
+
+Previews can be defined anywhere within `app/mailers`.
+
+```ruby
+class UserMailer::Preview < LetterBomb::Preview
+
+  def welcome
+    UserMailer.welcome(User.last)
+  end
+
+end
+```
+
+Preview methods are wrapped in a transaction that will be rolled back, so it's safe to create test data.
+One approach is to load your factory_girl factories and use those:
+
+```ruby
+class UserMailer::Preview < LetterBomb::Preview
+
+  has_factory_girl
 
   def welcome
     user = FactoryGirl.create(:user)
@@ -30,13 +53,10 @@ class UserMailer::Preview < MailPreview
 end
 ```
 
-Your mailer class methods don't have to match your previews, but your mailers should.
-
-Preview methods are wrapped in a transaction, so it's safe to create new data.
-
-Hit /mailers/:mailer_name
+Preview class names and methods are arbitrary so long as they return a `Mail` object.
 
 Alternatives
 ------------
 
-Also check out 37signals MailView.
+Also check out 37signals [mail_view](https://github.com/37signals/mail_view), which much inspiration was taken from.
+Differences: no automatic reloading of preview classes, no transactional previews, need to mount individual mailers.
