@@ -27,8 +27,8 @@ module LetterBomb
     end
 
     # TODO when we have refinements, refine String
-    def self.lchomp(base, arg)
-      base.to_s.reverse.chomp(arg.to_s.reverse).reverse
+    def self.lchomp(target, removable)
+      target.to_s.reverse.chomp(removable.to_s.reverse).reverse
     end
 
     def initialize

@@ -37,8 +37,18 @@ describe LetterBomb::Preview do
   end
 
   describe "#lchomp" do
-    it "removes a given string from the start of another string" do
+    it "removes a given string from the start of a target string" do
       LetterBomb::Preview.lchomp('abcd/edfg/abcd', 'abcd').should == '/edfg/abcd'
+    end
+    context "when the taget string does not begin with the removeable string" do
+      it "does not modify the string" do
+        LetterBomb::Preview.lchomp('edfg/abcd', 'abcd').should == 'edfg/abcd'
+      end
+    end
+    context "when the target string does not contain the removable string" do
+      it "does not modify the string" do
+        LetterBomb::Preview.lchomp('edfg', 'abcd').should == 'edfg'
+      end
     end
   end
 
