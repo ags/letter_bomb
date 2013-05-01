@@ -75,14 +75,21 @@
 
     <dt>To:</dt>
     <dd><%= @mail.to %></dd>
-
-    <dt>Content-Type:</dt>
-    <dd><%= @mail.content_type %></dd>
   </dl>
+
+  <% if @mail.multipart? %>
+    <p class="alternate">
+      <% if html_template? %>
+        <a href="<%= @action %>.txt">View plain text version</a>
+      <% else %>
+        <a href="<%= @action %>.html">View HTML version</a>
+      <% end %>
+    </p>
+  <% end %>
 </div>
 
-<% if @mail.content_type && @mail.content_type.match(/text\/html/) %>
-  <%= @mail.body.to_s.html_safe %>
+<% if html_template? %>
+  <%= body_part.body.to_s.html_safe %>
 <% else %>
-  <pre id="message_body"><%= @mail.body %></pre>
+  <pre id="message_body"><%= body_part.body %></pre>
 <% end %>
