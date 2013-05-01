@@ -26,7 +26,7 @@ mount LetterBomb::Engine, at: '/letter_bomb'
 and hit `/letter_bomb` for a list of previews.
 
 Previews can be defined anywhere within `app/mailers` suffixed with `preview`, i.e. `app/mailers/user_mailer_preview.rb` or `app/mailers/user_mailer/preview.rb`.
-Preview methods names are arbitrary so long as they return a `Mail` object.
+Preview method names are arbitrary so long as they return a `Mail` object.
 
 ```ruby
 class UserMailer::Preview < LetterBomb::Preview
