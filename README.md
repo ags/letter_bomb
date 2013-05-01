@@ -20,7 +20,9 @@ Usage
 Mount the engine in your `routes.rb`:
 
 ```ruby
-mount LetterBomb::Engine, at: '/letter_bomb'
+if Rails.env.development?
+  mount LetterBomb::Engine, at: '/letter_bomb'
+end
 ```
 
 and hit `/letter_bomb` for a list of previews.
