@@ -36,4 +36,10 @@ describe LetterBomb::Preview do
     end
   end
 
+  describe "#lchomp" do
+    it "removes a given string from the start of another string" do
+      LetterBomb::Preview.lchomp('abcd/edfg/abcd', 'abcd').should == '/edfg/abcd'
+    end
+  end
+
 end

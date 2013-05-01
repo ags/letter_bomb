@@ -26,15 +26,16 @@ module LetterBomb
       @@factory_girl = true
     end
 
+    # TODO when we have refinements, refine String
+    def self.lchomp(base, arg)
+      base.to_s.reverse.chomp(arg.to_s.reverse).reverse
+    end
+
     def initialize
       if defined?(@@factory_girl) && !defined?(FactoryGirl)
         require 'factory_girl'
         FactoryGirl.find_definitions
       end
-    end
-
-    def self.lchomp(base, arg)
-      base.to_s.reverse.chomp(arg.to_s.reverse).reverse
     end
 
   end
