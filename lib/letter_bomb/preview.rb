@@ -10,7 +10,7 @@ module LetterBomb
     end
 
     def self.mailer_actions
-      new.public_methods(false).map(&:to_s).sort
+      public_instance_methods(false).map(&:to_s).sort
     end
 
     def self.preview_action(mailer_action)
