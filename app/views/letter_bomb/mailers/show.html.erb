@@ -91,5 +91,7 @@
 <% if html_template? %>
   <%= body_part.body.to_s.html_safe %>
 <% else %>
-  <pre id="message_body"><%= body_part.body %></pre>
+<pre id="message_body">
+<%= body_part.body %>
+</pre>
 <% end %>
