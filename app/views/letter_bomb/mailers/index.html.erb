@@ -5,7 +5,7 @@
 
   <ul>
   <% mailer.mailer_actions.each do |action| %>
-    <li><%= link_to action, mailer_path(mailer.to_s, action, format: :html) %></li>
+    <li><%= link_to action, mailer_path(mailer.to_s, action) %></li>
   <% end %>
   </ul>
 

@@ -10,6 +10,8 @@ module LetterBomb
       @action = params[:mailer_action]
       @mail = klass.constantize.preview_action(@action)
 
+      params[:format] ||= @mail.multipart? ? "html" : "text"
+
       respond_to do |format|
         format.html
         format.text { render formats: [:html], content_type: 'text/html' }
