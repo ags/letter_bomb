@@ -10,7 +10,7 @@ module LetterBomb
       @action = params[:mailer_action]
       @mail = klass.constantize.preview_action(@action)
 
-      params[:format] ||= @mail.multipart? ? "html" : "text"
+      params[:format] ||= content_type_html? ? "html" : "text"
 
       respond_to do |format|
         format.html
@@ -19,6 +19,10 @@ module LetterBomb
     end
 
     private
+
+    def content_type_html?
+      @mail.content_type.match("text/html")
+    end
 
     def body_part
       return @mail unless @mail.multipart?
