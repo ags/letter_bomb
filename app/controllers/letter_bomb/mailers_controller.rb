@@ -1,16 +1,17 @@
 module LetterBomb
   class MailersController < ApplicationController
-
     def index
-      @mailers = LetterBomb::Preview.previews
+      @mailer_classes = LetterBomb::Preview.classes
     end
 
     def show
-      klass = params[:mailer_class]
-      @action = params[:mailer_action]
-      @mail = klass.constantize.preview_action(@action)
+      class_name  = params[:mailer_class]
+      action_name = params[:mailer_action]
 
-      params[:format] ||= content_type_html? ? "html" : "text"
+      @action = class_name.constantize.preview_action(
+        action_name,
+        format: params[:format]
+      )
 
       respond_to do |format|
         format.html {
@@ -27,26 +28,9 @@ module LetterBomb
 
     private
 
-    def content_type_html?
-      @mail.content_type.match("text/html")
+    def viewing_html_format?
+      @action.format == "html"
     end
-
-    def body_part
-      return @mail unless @mail.multipart?
-
-      content_type = Rack::Mime.mime_type(".#{params[:format]}")
-      if @mail.respond_to?(:all_parts)
-        @mail.all_parts.find { |part| part.content_type.match(content_type) } || @mail.parts.first
-      else
-        @mail.parts.find { |part| part.content_type.match(content_type) } || @mail.parts.first
-      end
-    end
-    helper_method :body_part
-
-    def html_template?
-      params[:format] == 'html'
-    end
-    helper_method :html_template?
-
+    helper_method :viewing_html_format?
   end
 end

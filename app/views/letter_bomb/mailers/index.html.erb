@@ -1,11 +1,11 @@
 <h1>Mailer Previews</h1>
 
-<% @mailers.each do |mailer| %>
-  <p><%= mailer.to_s %></p>
+<% @mailer_classes.each do |mailer| %>
+  <p><%= mailer.name %></p>
 
   <ul>
-  <% mailer.mailer_actions.each do |action| %>
-    <li><%= link_to action, mailer_path(mailer.to_s, action) %></li>
+  <% mailer.actions.each do |action| %>
+    <li><%= link_to action, mailer_path(mailer.name, action) %></li>
   <% end %>
   </ul>
 

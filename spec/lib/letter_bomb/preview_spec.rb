@@ -1,15 +1,15 @@
 require "spec_helper"
 
 describe LetterBomb::Preview do
-  describe ".previews" do
+  describe ".classes" do
     it "returns a list of classes within app/mailers suffixed with preview" do
-      expect(LetterBomb::Preview.previews).to include(FooMailerPreview)
+      expect(LetterBomb::Preview.classes).to include(FooMailerPreview)
     end
   end
 
-  describe ".mailer_actions" do
+  describe ".actions" do
     it "returns an alphabetized list of public instance methods" do
-      expect(FooMailerPreview.mailer_actions).to eq(['bad', 'good'])
+      expect(FooMailerPreview.actions).to eq(['bad', 'good'])
     end
   end
 
@@ -20,8 +20,12 @@ describe LetterBomb::Preview do
       end.to_not change { User.count }
     end
 
-    it "returns the result of the called method" do
-      expect(FooMailerPreview.preview_action(:good)).to eq("result of good")
+    it "returns a Preview::Action for the Mail object" do
+      action = FooMailerPreview.preview_action(:good)
+
+      # TODO using #send makes writing a mock expectation tricky
+      expect(action.name).to eq(:good)
+      expect(action).to be_a(LetterBomb::Preview::Action)
     end
   end
 end

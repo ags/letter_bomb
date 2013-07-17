@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <meta http-equiv="Content-Type" content="text/html; charset=<%= @mail.charset %>" />
+  <meta http-equiv="Content-Type" content="text/html; charset=<%= @action.charset %>" />
   <style type="text/css">
     #message_headers {
       width: 100%;
@@ -49,49 +49,36 @@
 
 <div id="message_headers">
   <dl>
-    <% if @mail.respond_to?(:smtp_envelope_from) && @mail.from != @mail.smtp_envelope_from %>
-      <dt>SMTP-From:</dt>
-      <dd><%= @mail.smtp_envelope_from %></dd>
-    <% end %>
+    <dt>To:</dt>
+    <dd><%= @action.to %></dd>
 
     <dt>From:</dt>
-    <dd><%= @mail.from %></dd>
+    <dd><%= @action.from %></dd>
 
-    <% if @mail.reply_to %>
+    <% if @action.reply_to %>
       <dt>Reply-To:</dt>
-      <dd><%= @mail.reply_to %></dd>
+      <dd><%= @action.reply_to %></dd>
     <% end %>
 
     <dt>Subject:</dt>
-    <dd><strong><%= @mail.subject %></strong></dd>
-
-    <dt>Date:</dt>
-    <dd><%= Time.now.strftime("%b %e, %Y %I:%M:%S %p %Z") %></dd>
-
-    <% if @mail.respond_to?(:smtp_envelope_to) && @mail.to != @mail.smtp_envelope_to %>
-      <dt>SMTP-To:</dt>
-      <dd><%= @mail.smtp_envelope_to %></dd>
-    <% end %>
-
-    <dt>To:</dt>
-    <dd><%= @mail.to %></dd>
+    <dd><strong><%= @action.subject %></strong></dd>
   </dl>
 
-  <% if @mail.multipart? %>
+  <% if @action.multipart? %>
     <p class="alternate">
-      <% if html_template? %>
-        <a href="<%= @action %>.txt">View plain text version</a>
+      <% if viewing_html_format? %>
+        <a href="<%= @action.name %>.txt">View plain text version</a>
       <% else %>
-        <a href="<%= @action %>.html">View HTML version</a>
+        <a href="<%= @action.name %>.html">View HTML version</a>
       <% end %>
     </p>
   <% end %>
 </div>
 
-<% if html_template? %>
-  <%= body_part.body.to_s.html_safe %>
+<% if viewing_html_format? %>
+  <%= @action.body.to_s.html_safe %>
 <% else %>
 <pre id="message_body">
-<%= body_part.body %>
+<%= @action.body %>
 </pre>
 <% end %>
