@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    letter_bomb (0.0.2)
+    letter_bomb (0.0.4)
       rails (~> 3.1)
 
 GEM
