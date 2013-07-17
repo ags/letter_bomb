@@ -25,12 +25,5 @@ module LetterBomb
         }
       end
     end
-
-    private
-
-    def viewing_html_format?
-      @action.format == "html"
-    end
-    helper_method :viewing_html_format?
   end
 end

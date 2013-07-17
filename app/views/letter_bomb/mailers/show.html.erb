@@ -66,7 +66,7 @@
 
   <% if @action.multipart? %>
     <p class="alternate">
-      <% if viewing_html_format? %>
+      <% if @action.html_format? %>
         <a href="<%= @action.name %>.txt">View plain text version</a>
       <% else %>
         <a href="<%= @action.name %>.html">View HTML version</a>
@@ -75,7 +75,7 @@
   <% end %>
 </div>
 
-<% if viewing_html_format? %>
+<% if @action.html_format? %>
   <%= @action.body.to_s.html_safe %>
 <% else %>
 <pre id="message_body">

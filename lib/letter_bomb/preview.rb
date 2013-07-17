@@ -62,6 +62,10 @@ module LetterBomb
         (find_part_with_content_type(content_type) || mail.parts.first).body
       end
 
+      def html_format?
+        format == "html"
+      end
+
       private
 
       def default_format
