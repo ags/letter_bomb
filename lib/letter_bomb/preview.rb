@@ -22,20 +22,9 @@ module LetterBomb
       mail
     end
 
-    def self.has_factory_girl
-      @@factory_girl = true
-    end
-
     # TODO when we have refinements, refine String
     def self.lchomp(target, removable)
       target.to_s.reverse.chomp(removable.to_s.reverse).reverse
-    end
-
-    def initialize
-      if defined?(@@factory_girl) && !defined?(FactoryGirl)
-        require 'factory_girl'
-        FactoryGirl.find_definitions
-      end
     end
 
   end

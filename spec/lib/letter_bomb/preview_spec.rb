@@ -26,16 +26,6 @@ describe LetterBomb::Preview do
     end
   end
 
-  describe ".has_factory_girl" do
-    it "requires FactoryGirl on preview initialization" do
-      class FactoryPreview < LetterBomb::Preview; has_factory_girl; end
-
-      expect do
-        FactoryPreview.new
-      end.to change { !!defined?(FactoryGirl) }.to(true)
-    end
-  end
-
   describe "#lchomp" do
     it "removes a given string from the start of a target string" do
       LetterBomb::Preview.lchomp('abcd/edfg/abcd', 'abcd').should == '/edfg/abcd'

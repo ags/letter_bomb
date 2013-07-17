@@ -34,27 +34,15 @@ Preview method names are arbitrary so long as they return a `Mail` object.
 class UserMailer::Preview < LetterBomb::Preview
 
   def welcome
-    UserMailer.welcome(User.last)
+    WelcomeMailer.for_user(User.last)
   end
 
 end
 ```
 
-Preview methods are wrapped in a transaction that will be rolled back, so it's safe to create test data.
-One approach is to load your factory_girl factories and use those:
-
-```ruby
-class UserMailer::Preview < LetterBomb::Preview
-
-  has_factory_girl
-
-  def welcome
-    user = FactoryGirl.create(:user)
-    UserMailer.welcome(user)
-  end
-
-end
-```
+Preview methods are wrapped in an ActiveRecord transaction block that will be
+rolled back after execution, so it's safe to create your own test data within
+them.
 
 Alternatives
 ------------
