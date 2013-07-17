@@ -1,31 +1,41 @@
 module LetterBomb
   class Preview
+    class << self
+      def previews
+        preview_filenames.map { |filename| class_from_filename(filename) }
+      end
 
-    def self.previews
-      load_dir = Rails.application.root.join('app/mailers').to_s
-      Dir.glob(load_dir + '/**/*preview.rb').map do |filename|
+      def mailer_actions
+        public_instance_methods(false).map(&:to_s).sort
+      end
+
+      def preview_action(mailer_action)
+        mail = nil
+        ActiveRecord::Base.transaction do
+          mail = new.send(mailer_action)
+          raise ActiveRecord::Rollback
+        end
+        mail
+      end
+
+      private
+
+      def preview_filenames
+        Dir.glob(preview_directory + "/**/*preview.rb")
+      end
+
+      def preview_directory
+        Rails.application.root.join("app/mailers").to_s
+      end
+
+      def class_from_filename(filename)
         # app/mailers/module/class.rb => module/class.rb => module/class => Module::Class
-        lchomp(filename, load_dir).chomp('.rb').camelize.constantize
+        lchomp(filename, preview_directory).chomp(".rb").camelize.constantize
+      end
+
+      def lchomp(target, removable)
+        target.to_s.reverse.chomp(removable.to_s.reverse).reverse
       end
     end
-
-    def self.mailer_actions
-      public_instance_methods(false).map(&:to_s).sort
-    end
-
-    def self.preview_action(mailer_action)
-      mail = nil
-      ActiveRecord::Base.transaction do
-        mail = new.send(mailer_action)
-        raise ActiveRecord::Rollback
-      end
-      mail
-    end
-
-    # TODO when we have refinements, refine String
-    def self.lchomp(target, removable)
-      target.to_s.reverse.chomp(removable.to_s.reverse).reverse
-    end
-
   end
 end
