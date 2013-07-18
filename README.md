@@ -48,4 +48,4 @@ Alternatives
 ------------
 
 Also check out 37signals [mail_view](https://github.com/37signals/mail_view), which much inspiration was taken from.
-Differences: no automatic reloading of preview classes, no transactional previews, need to mount individual mailers.
+See [here](http://thatalexguy.com/posts/2013-07-18-letter-bomb.html) for more details on the differences.
