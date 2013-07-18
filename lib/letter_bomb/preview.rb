@@ -69,7 +69,7 @@ module LetterBomb
       private
 
       def default_format
-        content_type.match("multipart") ? "html" : "text"
+        content_type.match(/multipart|html/) ? "html" : "text"
       end
 
       def find_part_with_content_type(content_type)
