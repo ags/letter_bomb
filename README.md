@@ -1,10 +1,8 @@
-LetterBomb
-==========
+# LetterBomb [![Build Status](https://travis-ci.org/ags/letter_bomb.png?branch=master)](https://travis-ci.org/ags/letter_bomb)
 
 Emails are pretty dangerous - inspect your mailer templates from the safety of your browser.
 
-Install
--------
+## Install
 
 Add to your `Gemfile`:
 
@@ -14,8 +12,7 @@ gem 'letter_bomb', group: :development
 
 and `bundle` away.
 
-Usage
------
+## Usage
 
 Mount the engine in your `routes.rb`:
 
@@ -42,8 +39,7 @@ Preview methods are wrapped in an ActiveRecord transaction block that will be
 rolled back after execution, so it's safe to create your own test data within
 them.
 
-Alternatives
-------------
+## Alternatives
 
 Also check out 37signals [mail_view](https://github.com/37signals/mail_view), which much inspiration was taken from.
 See [here](http://thatalexguy.com/posts/2013-07-18-letter-bomb.html) for more details on the differences.
