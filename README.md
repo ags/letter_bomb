@@ -32,11 +32,9 @@ Preview method names are arbitrary so long as they return a `Mail` object.
 
 ```ruby
 class UserMailer::Preview < LetterBomb::Preview
-
   def welcome
     WelcomeMailer.for_user(User.last)
   end
-
 end
 ```
 
