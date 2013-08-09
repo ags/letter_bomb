@@ -67,7 +67,7 @@
   <% if @action.multipart? %>
     <p class="alternate">
       <% if @action.html_format? %>
-        <a href="<%= @action.name %>.txt">View plain text version</a>
+        <a href="<%= @action.name %>.text">View plain text version</a>
       <% else %>
         <a href="<%= @action.name %>.html">View HTML version</a>
       <% end %>
