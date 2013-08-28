@@ -1,4 +1,4 @@
-# LetterBomb [![Build Status](https://travis-ci.org/ags/letter_bomb.png?branch=master)](https://travis-ci.org/ags/letter_bomb)
+# letter_bomb [![Build Status](https://travis-ci.org/ags/letter_bomb.png?branch=master)](https://travis-ci.org/ags/letter_bomb)
 
 Emails are pretty dangerous - inspect your mailer templates from the safety
 of your browser.
