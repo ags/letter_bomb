@@ -41,6 +41,11 @@ Preview methods are wrapped in an ActiveRecord transaction block that will be
 rolled back after execution, so it's safe to create your own test data within
 them.
 
+## Contributors
+
+* [ags](https://github.com/ags)
+* [andrewk](https://github.com/andrewk)
+
 ## Alternatives
 
 Also check out 37signals [mail_view](https://github.com/37signals/mail_view),
