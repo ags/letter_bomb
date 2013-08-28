@@ -1,7 +1,90 @@
-<h1>Mailer Previews</h1>
+<% content_for :head do %>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>letter_bomb</title>
+  <style type="text/css">
+  html
+  {
+    background:#C5B9AB;
+  }
+
+  body
+  {
+    font:16px/1.5 Menlo, Monaco, monospace;
+    max-width:460px;
+    margin:0 auto;
+    padding:20px 40px;
+    border-top:none;
+    background:#FDF7E7;
+    box-shadow:0 0 12px #998772;
+  }
+
+  h1
+  {
+    color:#C5B9AB;
+    margin-top:0;
+    font-size:20px;
+    font-weight:normal;
+    font-family:monospace;
+    text-align:center;
+    padding:10px 0;
+    border-bottom:1px solid #E7DCD0;
+    border-top:1px solid #E7DCD0;
+  }
+
+  h2
+  {
+    font-size:16px;
+    color:#724F28;
+    font-weight:normal;
+    margin:30px 0 10px;
+  }
+
+  ul
+  {
+    padding-left:10px;
+    margin:10px 0 20px;
+  }
+
+  li
+  {
+    list-style:inside none;
+    margin-left:0;
+    padding-left:0;
+  }
+
+  li:before
+  {
+    content: ">";
+    font-size:14px;
+    color:#C5B9AB;
+    padding-right:20px;
+    font-family:monospace;
+  }
+
+  a
+  {
+    text-decoration:none;
+    color:rgb(11, 139, 156);
+  }
+
+  a:hover
+  {
+    color:rgb(253, 126, 26);
+  }
+  @media screen and (max-width: 550px) {
+    html { background:#FDF7E7; }
+    body { padding:10px; font-size:13px;box-shadow:none;}
+    h1 { font-size:15px; padding:5px 0; }
+    h2 { font-size:13px; margin-top:15px; }
+  }
+  </style>
+<% end %>
+
+<div class="lbindex">
+<h1>letter_bomb</h1>
 
 <% @mailer_classes.each do |mailer| %>
-  <p><%= mailer.name %></p>
+  <h2><%= mailer.name %></h2>
 
   <ul>
   <% mailer.actions.each do |action| %>
@@ -10,3 +93,4 @@
   </ul>
 
 <% end %>
+</div>
