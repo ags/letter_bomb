@@ -83,7 +83,7 @@
 <div class="lbindex">
 <h1>letter_bomb</h1>
 
-<% @mailer_classes.each do |mailer| %>
+<% @mailer_classes.sort_by(&:name).each do |mailer| %>
   <h2><%= mailer.name %></h2>
 
   <ul>
