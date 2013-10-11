@@ -14,13 +14,10 @@ module LetterBomb
       )
 
       respond_to do |format|
-        format.html {
-          render layout: "letter_bomb/application"
-        }
+        format.html
 
         format.text {
-          render layout: "letter_bomb/application",
-                 formats: [:html],
+          render formats: [:html],
                  content_type: 'text/html'
         }
       end
