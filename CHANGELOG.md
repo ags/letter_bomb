@@ -1,3 +1,7 @@
+### 0.1.4
+
+* Fix a bug with rendering the host application layout on the index page.
+
 ### 0.1.3
 
 * Previews are sorted alphabetically by name on index page. (ags)
