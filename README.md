@@ -45,6 +45,7 @@ them.
 
 * [ags](https://github.com/ags)
 * [andrewk](https://github.com/andrewk)
+* [lsimoneau](https://github.com/lsimoneau)
 
 ## Alternatives
 
