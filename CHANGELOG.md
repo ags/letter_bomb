@@ -1,3 +1,7 @@
+### 0.1.5
+
+* Fix a bug with ApplicationController load order.
+
 ### 0.1.4
 
 * Fix a bug with rendering the host application layout on the index page.
