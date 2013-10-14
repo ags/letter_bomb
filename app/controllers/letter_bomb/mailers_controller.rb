@@ -1,3 +1,5 @@
+require 'letter_bomb/application_controller'
+
 module LetterBomb
   class MailersController < ApplicationController
     def index
