@@ -51,5 +51,5 @@ them.
 
 Also check out 37signals [mail_view](https://github.com/37signals/mail_view),
 which much inspiration was taken from.
-See [here](http://thatalexguy.com/posts/2013-07-18-letter-bomb.html) for more
+See [here](http://thatalexguy.com/letter-bomb.html) for more
 details on the differences.
