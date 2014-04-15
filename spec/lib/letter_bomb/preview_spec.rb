@@ -27,5 +27,12 @@ describe LetterBomb::Preview do
       expect(action.name).to eq(:good)
       expect(action).to be_a(LetterBomb::Preview::Action)
     end
+
+    it "passes through raw params" do
+      id = "awesome"
+      raw_params = {id: id}
+      action = FooMailerPreview.preview_action(:very_good, {raw_params: raw_params})
+      expect(action.mail.text_part.body).to match(/#{id}/)
+    end
   end
 end
