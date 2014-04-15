@@ -2,6 +2,8 @@ require "forwardable"
 
 module LetterBomb
   class Preview
+    attr_reader :raw_params
+
     class << self
       def classes
         preview_filenames.map { |filename| class_from_filename(filename) }
@@ -13,8 +15,11 @@ module LetterBomb
 
       def preview_action(action_name, options={})
         action = nil
+        preview = new
+        preview.instance_variable_set("@raw_params", options[:raw_params])
+
         ActiveRecord::Base.transaction do
-          mail = new.send(action_name)
+          mail = preview.send(action_name)
           action = Action.new(action_name, mail, options)
           raise ActiveRecord::Rollback
         end
