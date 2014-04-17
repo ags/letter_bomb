@@ -9,7 +9,7 @@ describe LetterBomb::Preview do
 
   describe ".actions" do
     it "returns an alphabetized list of public instance methods" do
-      expect(FooMailerPreview.actions).to eq(['bad', 'good'])
+      expect(FooMailerPreview.actions).to eq(['bad', 'good', 'very_good'])
     end
   end
 
