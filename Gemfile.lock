@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    letter_bomb (0.1.6)
+    letter_bomb (1.0.0)
       rails (~> 3.1)
 
 GEM
@@ -47,7 +47,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     multi_json (1.7.7)
-    polyglot (0.3.3)
+    polyglot (0.3.4)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -95,7 +95,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.38)
+    tzinfo (0.3.39)
 
 PLATFORMS
   ruby
