@@ -49,7 +49,4 @@ them.
 
 ## Alternatives
 
-Also check out 37signals [mail_view](https://github.com/37signals/mail_view),
-which much inspiration was taken from.
-See [here](http://thatalexguy.com/letter-bomb.html) for more
-details on the differences.
+Rails 4 introduced [`ActionMailer::Preview`](https://github.com/rails/rails/commit/d6dec7fcb6b8fddf8c170182d4fe64ecfc7b2261), which should be preferred if available.
