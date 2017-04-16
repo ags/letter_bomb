@@ -9,7 +9,7 @@ describe LetterBomb::Preview do
 
   describe ".actions" do
     it "returns an alphabetized list of public instance methods" do
-      expect(FooMailerPreview.actions).to eq(['bad', 'good'])
+      expect(FooMailerPreview.actions).to eq(['bad', 'good', 'very_good'])
     end
   end
 
@@ -26,6 +26,13 @@ describe LetterBomb::Preview do
       # TODO using #send makes writing a mock expectation tricky
       expect(action.name).to eq(:good)
       expect(action).to be_a(LetterBomb::Preview::Action)
+    end
+
+    it "passes through raw params" do
+      id = "awesome"
+      raw_params = {id: id}
+      action = FooMailerPreview.preview_action(:very_good, {raw_params: raw_params})
+      expect(action.mail.text_part.body).to match(/#{id}/)
     end
   end
 end

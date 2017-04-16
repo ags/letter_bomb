@@ -12,7 +12,8 @@ module LetterBomb
 
       @action = class_name.constantize.preview_action(
         action_name,
-        format: params[:format]
+        format: params[:format],
+        raw_params: params
       )
 
       respond_to do |format|
